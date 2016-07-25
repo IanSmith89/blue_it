@@ -26,15 +26,15 @@ router.get('/posts', checkAuth, (req, res, next) => {
 });
 
 router.post('/posts', checkAuth, ev(validations.post), (req, res, next) => {
-  const { title, author, image_url, description, topic_id } = req.body;
+  const { title, image_url, description, topic_id } = req.body;
 
   knex('posts')
     .insert({
       title,
-      author,
       image_url,
       description,
       rating: 0,
+      user_id: req.session.userId,
       topic_id,
     })
     .then(() => {
