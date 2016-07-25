@@ -7,7 +7,6 @@ const ev = require('express-validation');
 const validations = require('../validations/posts');
 
 const checkAuth = function(req, res, next) {
-  console.log(req.session);
   if (!req.session.userId) {
     return res.sendStatus(401);
   }
@@ -15,7 +14,7 @@ const checkAuth = function(req, res, next) {
   next();
 };
 
-router.get('/posts', checkAuth, (req, res, next) => {
+router.get('/posts', (req, res, next) => {
   knex('posts')
     .then((posts) => {
       res.send(posts);

@@ -1,13 +1,24 @@
 'use strict';
 
 angular.module('blueit')
-  .controller('HomeCtrl', [HomeCtrl])
+  .controller('HomeCtrl', ['postService', HomeCtrl])
   .controller('AuthCtrl', ['$location', 'authService', AuthCtrl])
   .controller('SessionCtrl', ['$location', 'authService', SessionCtrl]);
 
-function HomeCtrl() {
+function HomeCtrl(postService) {
   var vm = this;
-  vm.title = 'Homepage';
+  vm.title = 'Posts';
+  vm.posts = [];
+
+  postService.getPosts()
+    .then(function(res) {
+      if (res.status === 200) {
+        vm.posts = res.data;
+      }
+    })
+    .catch(function(err) {
+      console.error(err);
+    });
 }
 
 function AuthCtrl($location, authService) {
