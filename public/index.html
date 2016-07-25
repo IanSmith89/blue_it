@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html ng-app="blueit">
+  <head>
+    <meta charset="utf-8">
+    <title>Blue It</title>
+
+    <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="vendor/materialize.min.css" rel="stylesheet">
+    <link href="css/styles.css" rel="stylesheet">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  </head>
+
+  <body ng-cloak>
+    <div class="navbar-fixed">
+      <nav ng-controller="SessionCtrl as SC">
+        <div class="nav-wrapper">
+          <a href="#/" class="brand-logo">
+            <span>
+              <img class="logo-png" src="images/galvanize_logo.png" />
+            </span>
+            <span class="logo-text">blue-it</span>
+          </a>
+          <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
+          <ul class="right hide-on-med-and-down">
+            <li><a href="#/register">Register</a></li>
+            <li><a href="#/login">Login</a></li>
+            <li><a href="" ng-click="SC.logoutUser()">Logout</a></li>
+          </ul>
+          <ul class="side-nav" id="mobile-demo">
+            <li><a href="#/register">Register</a></li>
+            <li><a href="#/login">Login</a></li>
+            <li><a href="" ng-click="SC.logoutUser()">Logout</a></li>
+          </ul>
+        </div>
+      </nav>
+    </div>
+
+    <main ng-view></main>
+
+    <footer class="page-footer">
+      <div class="footer-copyright">
+        <small>© 2016 Galvanize, Inc. All Rights Reserved</small>
+      </div>
+    </footer>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular-route.min.js"></script>
+    <script src="vendor/jquery-3.1.0.min.js"></script>
+    <script src="vendor/materialize.min.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/routes.js"></script>
+    <script src="js/services.js"></script>
+    <script src="js/controllers.js"></script>
+  </body>
+</html>
