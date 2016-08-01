@@ -6,14 +6,6 @@ const knex = require('../knex');
 const ev = require('express-validation');
 const validations = require('../validations/posts');
 
-const checkAuth = function(req, res, next) {
-  if (!req.session.userId) {
-    return res.sendStatus(401);
-  }
-
-  next();
-};
-
 router.get('/posts', (req, res, next) => {
   knex('posts')
     .then((posts) => {
@@ -24,17 +16,17 @@ router.get('/posts', (req, res, next) => {
     });
 });
 
-router.post('/posts', checkAuth, ev(validations.post), (req, res, next) => {
-  const { title, image_url, description, topic_id } = req.body;
+router.post('/posts', ev(validations.post), (req, res, next) => {
+  const { title, imageUrl, description, topicId } = req.body;
 
   knex('posts')
     .insert({
       title,
-      image_url,
+      image_url: imageUrl,
       description,
       rating: 0,
       user_id: req.session.userId,
-      topic_id,
+      topic_id: topicId,
     })
     .then(() => {
       res.sendStatus(200);
@@ -44,7 +36,7 @@ router.post('/posts', checkAuth, ev(validations.post), (req, res, next) => {
     });
 });
 
-router.get('/posts/:topicId', checkAuth, (req, res, next) => {
+router.get('/posts/:topicId', (req, res, next) => {
   knex('posts')
     .where({
       topic_id: req.params.topicId

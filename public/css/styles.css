@@ -3,6 +3,7 @@
 }
 
 body {
+  background-color: #ECEFF1;
   display: flex;
   min-height: 100vh;
   flex-direction: column;
@@ -47,12 +48,39 @@ nav ul a {
   color: #b6b6b6;
 }
 
+nav .nav-wrapper i {
+  height: 56px;
+  line-height: 56px;
+}
+
 .navbar-fixed {
   height: 56px;
 }
 
+form[name='topicForm'] {
+  margin-top: 15px;
+}
+
 main {
   flex: 1 0 auto;
+}
+
+.modal {
+  padding-bottom: 30px;
+}
+
+.card {
+  padding: 15px 0 0;
+}
+
+.card h5 {
+  margin-top: 0;
+}
+
+.card h6 {
+  color: #9E9E9E;
+  text-transform: uppercase;
+  letter-spacing: 0.12rem;
 }
 
 .title {
