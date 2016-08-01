@@ -4,10 +4,10 @@
   $(".button-collapse").sideNav();
 
   angular.module('blueit')
-    .controller('PostCtrl', ['$timeout', PostCtrl])
-    .controller('TopicCtrl', ['$timeout', TopicCtrl]);
+    .controller('PostCtrl', ['$scope', PostCtrl])
+    .controller('TopicCtrl', ['$scope', TopicCtrl]);
 
-  function PostCtrl($timeout) {
+  function PostCtrl($scope) {
     var vm = this;
 
     vm.posts = [
@@ -114,18 +114,14 @@
       $('#modal').closeModal();
     };
 
-    vm.initSelect = function() {
-      $timeout(() => {
-        $('select').material_select();
-      }, 10);
-    };
-
-    vm.initSelect();
+    $scope.$watch('topics', () => {
+      $('select').material_select();
+    });
 
     $('.modal-trigger').leanModal();
   }
 
-  function TopicCtrl($timeout) {
+  function TopicCtrl($scope) {
     const vm = this;
 
     vm.topics = [
@@ -161,12 +157,8 @@
       vm.initSelect();
     };
 
-    vm.initSelect = function() {
-      $timeout(() => {
-        $('select').material_select();
-      }, 10);
-    };
-
-    vm.initSelect();
+    $scope.$watch('topics', () => {
+      $('select').material_select();
+    });
   }
 })();
